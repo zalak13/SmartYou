@@ -1,0 +1,230 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package UserInterface.AppUsersProfile.Activities;
+
+import com.alee.laf.table.WebTable;
+import com.alee.laf.table.renderers.WebTableCellRenderer;
+import com.alee.utils.swing.WebDefaultCellEditor;
+import java.awt.Component;
+import javax.swing.AbstractCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
+/**
+ *
+ * @author Zak
+ */
+public class NewJFrame extends javax.swing.JFrame {
+
+    /**
+     * Creates new form NewJFrame
+     */
+    public NewJFrame() {
+        initComponents();
+       
+        tablePopulate();
+    }
+    
+
+    public void tablePopulate(){
+        // Table
+//        WebTable table = new WebTable ( new ExampleTableModel () );
+//        WebScrollPane scrollPane = new WebScrollPane ( table );
+        //WebScrollPane scrollPane = (WebScrollPane) jScrollPane1;
+        // Custom column
+        WebTable table = webTable2;
+        //webTable2 =  (table);
+        //WebTable  table =  webTable2;
+
+        TableColumn column = table.getColumnModel ().getColumn ( 1 );
+
+        // Custom renderer
+        WebTableCellRenderer renderer = new WebTableCellRenderer ();
+        renderer.setToolTipText ( "Click for combo box" );
+        column.setCellRenderer ( renderer );
+        
+
+        // Custom editor
+        JComboBox comboBox = new JComboBox ();
+        comboBox.addItem ( "No Music" );
+        comboBox.addItem ( "Light" );
+        comboBox.addItem ( "High Notes" );
+        comboBox.addItem ( "Power Workout" );
+        comboBox.addItem ( "Deep Sleep" );
+        comboBox.addItem ( "Deep Focus" );
+        
+        
+        column.setCellEditor ( new WebDefaultCellEditor(comboBox));
+        // Better column sizes
+        initColumnSizes ( table );
+        //return scrollPane;
+    }
+    private void initColumnSizes ( WebTable table )
+    {
+        ExampleTableModel model = ( ExampleTableModel ) table.getModel ();
+        TableColumn column;
+        Component comp;
+        int headerWidth;
+        int cellWidth;
+     
+        Object[] longValue = model.longValues;
+        TableCellRenderer headerRenderer = table.getTableHeader ().getDefaultRenderer ();
+
+        for ( int i = 0; i < model.getColumnCount (); i++ )
+        {
+            column = table.getColumnModel ().getColumn ( i );
+
+            comp = headerRenderer.getTableCellRendererComponent ( null, column.getHeaderValue (), false, false, 0, 0 );
+            headerWidth = comp.getPreferredSize ().width;
+
+            comp = table.getDefaultRenderer ( model.getColumnClass ( i ) ).
+                    getTableCellRendererComponent ( table, longValue[ i ]
+                            , false, false, 0, i );
+            cellWidth = comp.getPreferredSize ().width;
+
+            column.setPreferredWidth ( Math.max ( headerWidth, cellWidth ) );
+        }
+    }
+
+    public class ExampleTableModel extends AbstractTableModel
+    {
+        private String[] columnNames = { "Name", "Music", "# of Years", "Vegetarian","Test" };
+        private Object[][] data = { { "Kathy", "Light", 5, false,"wsr" }, { "John", "Heavy", 3, true,"trt" }, { "Sue", "Deep Focus", 2, false,"tukk" },
+                { "Jane", "Power Workout", 20, true,"hy" }, { "Joe", "Heavy", 10, false,"hjhj" } };
+        
+        public final Object[] longValues = { "Jane", "No Music", 20, Boolean.TRUE,"rtrtr" };
+
+        @Override
+         public int getColumnCount ()
+        {
+            return columnNames.length;
+        }
+
+        @Override
+        public int getRowCount ()
+        {
+            return data.length;
+        }
+
+        @Override
+        public String getColumnName ( int col )
+        {
+            return columnNames[ col ];
+        }
+
+        @Override
+        public Object getValueAt ( int row, int col )
+        {
+            return  data[ row ][ col ];
+        }
+
+        @Override
+        public Class getColumnClass ( int c )
+        {
+            return longValues[ c ].getClass ();
+        }
+
+        @Override
+        public boolean isCellEditable ( int row, int col )
+        {
+            return col >= 1;
+        }
+
+        @Override
+        public void setValueAt ( Object value, int row, int col )
+        {
+            data[ row ][ col ] = value;
+            fireTableCellUpdated ( row, col );
+        }
+    }
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane2 = new javax.swing.JScrollPane();
+        webTable2 = new com.alee.laf.table.WebTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        webTable2.setModel(new ExampleTableModel());
+        webTable2.setColumnSelectionAllowed(true);
+        webTable2.setPreferredSize(new java.awt.Dimension(500, 100));
+        jScrollPane2.setViewportView(webTable2);
+        webTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new NewJFrame().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane2;
+    private com.alee.laf.table.WebTable webTable2;
+    // End of variables declaration//GEN-END:variables
+}
