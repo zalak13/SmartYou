@@ -19,5 +19,5 @@
 * This can be accomplished by Being a Virtual Self logged into the Application. This Virtual Self will have the Health, Finances and House Profile. Additionally this will capture the Use Cases like activities taken up by the person which will change his or her vital signs. These activities will trigger the healthy environment at home by controlling the appliances.
 * Additionally, Doctors can use these vital sign history and his or her regime to provide the person a better consultation.
 
-# Technologies Used:
+# Build With:
 * Java SE, NetBeans IDE , Abstract factory pattern, DB4OUtils for Data persistance, Health vital signs capture. 
