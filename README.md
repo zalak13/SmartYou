@@ -1,4 +1,5 @@
 # SmartYou
+* A IOT Desktop Application
 
 # Inspiration:
 * When the history of the 21st century is written it will be known as the Age of the Machines. Over the coming decades machines will be intimately involved in every part of our lives from the cradle to the grave and playing a key role in the poorest of states as well as the wealthiest countries.
@@ -17,3 +18,6 @@
 # Implementation:
 * This can be accomplished by Being a Virtual Self logged into the Application. This Virtual Self will have the Health, Finances and House Profile. Additionally this will capture the Use Cases like activities taken up by the person which will change his or her vital signs. These activities will trigger the healthy environment at home by controlling the appliances.
 * Additionally, Doctors can use these vital sign history and his or her regime to provide the person a better consultation.
+
+# Technologies Used:
+* Java SE, NetBeans IDE , Abstract factory pattern, DB4OUtils for Data persistance, Health vital signs capture. 
